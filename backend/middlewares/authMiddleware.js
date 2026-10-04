@@ -10,7 +10,8 @@ const verifyToken = (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        // Use the same fallback secret as authController.login to avoid mismatch
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'supersecret');
         req.user = decoded; // Contains id and role
         next();
     } catch (error) {

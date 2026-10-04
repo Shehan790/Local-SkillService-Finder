@@ -105,9 +105,9 @@ const ProviderDashboard = () => {
 
     const handleComplete = async (id) => {
         try {
-            // Note: backend requires the key `completion_otp` according to DB schema, but check if controller expects `otp` or `completion_otp`
+            // Backend completeBooking controller reads req.body.otp
             await axios.post(`/api/bookings/${id}/complete`, 
-                { completion_otp: otpInputs[id], otp: otpInputs[id] },
+                { otp: otpInputs[id] },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             alert("Job Verified and Completed!");
