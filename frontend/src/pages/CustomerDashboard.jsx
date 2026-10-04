@@ -19,7 +19,7 @@ const CustomerDashboard = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/bookings/my-bookings', {
+                const res = await axios.get('/api/bookings/my-bookings', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setBookings(res.data.bookings);
@@ -35,7 +35,7 @@ const CustomerDashboard = () => {
     const submitReview = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/reviews', 
+            await axios.post('/api/reviews', 
                 { booking_id: selectedBooking.id, rating: parseInt(rating), comment },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

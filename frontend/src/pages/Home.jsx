@@ -48,7 +48,7 @@ const Home = () => {
             const params = { lat, lng, radius, min_rating: minRating };
             if (categoryId) params.category_id = categoryId;
             
-            const response = await axios.get('http://localhost:5000/api/providers/search', { params });
+            const response = await axios.get('/api/providers/search', { params });
             setProviders(response.data.providers || []);
         } catch (error) {
             console.error("Error fetching providers:", error);

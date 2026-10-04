@@ -21,7 +21,7 @@ const ProviderDetails = () => {
     useEffect(() => {
         const fetchProvider = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/providers/${id}`);
+                const res = await axios.get(`/api/providers/${id}`);
                 setProvider(res.data.provider);
                 setAgreedPrice(res.data.provider.hourly_rate); // Default to provider's hourly rate
             } catch (error) {
@@ -37,7 +37,7 @@ const ProviderDetails = () => {
         e.preventDefault();
         
         try {
-            await axios.post('http://localhost:5000/api/bookings', 
+            await axios.post('/api/bookings', 
                 { 
                     provider_id: provider.user_id, 
                     service_date: serviceDate, 

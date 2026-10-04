@@ -22,7 +22,7 @@ const Register = () => {
         setLoading(true);
 
         try {
-            await axios.post('http://localhost:5000/api/auth/register', formData);
+            await axios.post('/api/auth/register', formData);
             alert("Registration successful! Please sign in.");
             navigate('/login');
         } catch (err) {

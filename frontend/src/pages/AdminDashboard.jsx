@@ -21,7 +21,7 @@ const AdminDashboard = () => {
 
     const fetchStats = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/admin/stats', {
+            const res = await axios.get('/api/admin/stats', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setStats(res.data);
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
 
     const fetchProviders = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/admin/providers', {
+            const res = await axios.get('/api/admin/providers', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setProviders(res.data.providers);
@@ -43,7 +43,7 @@ const AdminDashboard = () => {
 
     const handleVerifyToggle = async (profileId, currentStatus) => {
         try {
-            await axios.patch(`http://localhost:5000/api/admin/providers/${profileId}/verify`, 
+            await axios.patch(`/api/admin/providers/${profileId}/verify`, 
                 { is_verified: !currentStatus },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
     const handleAddCategory = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/admin/categories', 
+            await axios.post('/api/admin/categories', 
                 { name: categoryName, icon_url: categoryIcon },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

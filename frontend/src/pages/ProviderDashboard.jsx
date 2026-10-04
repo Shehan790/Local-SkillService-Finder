@@ -17,7 +17,7 @@ const ProviderDashboard = () => {
 
     const fetchBookings = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/bookings/my-bookings', {
+            const res = await axios.get('/api/bookings/my-bookings', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setBookings(res.data.bookings);
@@ -35,7 +35,7 @@ const ProviderDashboard = () => {
         if (token && user?.role === 'provider' && isAvailable) {
             const fetchEmergencies = async () => {
                 try {
-                    const res = await axios.get('http://localhost:5000/api/emergency/nearby', {
+                    const res = await axios.get('/api/emergency/nearby', {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     setEmergencies(res.data.requests || []);
@@ -52,7 +52,7 @@ const ProviderDashboard = () => {
     const handleProfileUpdate = async (updateData) => {
         setUpdatingProfile(true);
         try {
-            await axios.put('http://localhost:5000/api/providers/profile', 
+            await axios.put('/api/providers/profile', 
                 updateData,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -93,7 +93,7 @@ const ProviderDashboard = () => {
 
     const handleStatusUpdate = async (id, status) => {
         try {
-            await axios.patch(`http://localhost:5000/api/bookings/${id}/status`, 
+            await axios.patch(`/api/bookings/${id}/status`, 
                 { status },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -106,7 +106,7 @@ const ProviderDashboard = () => {
     const handleComplete = async (id) => {
         try {
             // Note: backend requires the key `completion_otp` according to DB schema, but check if controller expects `otp` or `completion_otp`
-            await axios.post(`http://localhost:5000/api/bookings/${id}/complete`, 
+            await axios.post(`/api/bookings/${id}/complete`, 
                 { completion_otp: otpInputs[id], otp: otpInputs[id] },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -119,7 +119,7 @@ const ProviderDashboard = () => {
 
     const handleAcceptEmergency = async (emergencyId) => {
         try {
-            await axios.post(`http://localhost:5000/api/emergency/${emergencyId}/accept`, {}, {
+            await axios.post(`/api/emergency/${emergencyId}/accept`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Emergency Job Accepted! The booking is now active.");

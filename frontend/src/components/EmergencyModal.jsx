@@ -18,7 +18,7 @@ const EmergencyModal = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         if (isOpen && categories.length === 0) {
-            axios.get('http://localhost:5000/api/providers/categories').then(res => {
+            axios.get('/api/providers/categories').then(res => {
                 setCategories(res.data.categories);
             }).catch(console.error);
         }
@@ -55,7 +55,7 @@ const EmergencyModal = ({ isOpen, onClose }) => {
         }
         setSubmitting(true);
         try {
-            await axios.post('http://localhost:5000/api/emergency', formData, {
+            await axios.post('/api/emergency', formData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Emergency SOS Broadcasted successfully! Nearby providers are being notified.");
